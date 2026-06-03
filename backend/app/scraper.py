@@ -451,6 +451,7 @@ PROPERTY_URLS = [
     "https://www.bilaadnigeria.com/7622-2/",
     "https://www.bilaadnigeria.com/our-project/",
     "https://www.bilaadnigeria.com/about-us/",
+    "https://www.bilaadnigeria.com/contact-us/",
 ]
 
 
