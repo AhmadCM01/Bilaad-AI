@@ -157,26 +157,38 @@ $$;
 
 ## 🚀 MVP Production Deployment Guide
 
-### 📍 Step 1: Deploy Backend (Railway)
-1. Link your GitHub repository to [Railway.app](https://railway.app).
-2. Configure your service:
+### 📍 Step 1: Deploy Backend (Render)
+1. Log in to [Render](https://render.com) and select **New > Web Service**.
+2. Connect your GitHub repository (`Bilaad-AI`).
+3. Configure the Web Service settings:
+   * **Name**: `bilaad-ai-backend`
+   * **Runtime**: `Python 3`
+   * **Branch**: `main`
    * **Root Directory**: `backend`
-   * **Start Command**: `python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`
-3. In the **Variables** settings, supply:
-   * `GEMINI_API_KEY`, `SUPABASE_URL`, `SUPABASE_KEY`
+   * **Build Command**: `pip install -r requirements.txt`
+   * **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. Expand **Advanced** and add the following Environment Variables:
+   * `GEMINI_API_KEY`: Your Google Gemini API Key
+   * `SUPABASE_URL`: Your Supabase Project URL
+   * `SUPABASE_KEY`: Your Supabase API Key
+5. Click **Create Web Service**.
+
+> [!NOTE]
+> Render Free Tier instances spin down after 15 minutes of inactivity. The first request to your API after a period of inactivity may take up to 50 seconds to complete while the instance spins back up.
 
 ### 📍 Step 2: Deploy Frontend (Vercel)
 1. Link your GitHub repository to [Vercel](https://vercel.com).
 2. Configure the deployment:
    * **Root Directory**: `frontend`
    * **Environment Variables**:
-     * `NEXT_PUBLIC_API_URL` pointing to the public URL of your deployed Railway app (e.g., `https://bilaad-backend-production.up.railway.app`).
+     * `NEXT_PUBLIC_API_URL` pointing to the public URL of your deployed Render app (e.g., `https://bilaad-ai-backend.onrender.com`).
 
 ### 📍 Step 3: Trigger Initial Ingestion
-Once the backend is live on Railway, call the `/ingest` REST endpoint once to populate the Supabase database with all 14 property specifications:
+Once the backend is live on Render, call the `/ingest` REST endpoint once to populate the Supabase database with all 14 property specifications:
 ```powershell
-Invoke-WebRequest -Uri https://your-railway-app.up.railway.app/ingest -Method POST
+Invoke-WebRequest -Uri https://your-render-app.onrender.com/ingest -Method POST
 ```
+
 
 ---
 
