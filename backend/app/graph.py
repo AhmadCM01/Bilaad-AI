@@ -150,11 +150,16 @@ def execute_rag_query(state: AgentState) -> dict:
             }
         except Exception as e:
             print(f"[ERROR] Structured LLM error: {e}")
-            # Safe structured fallback
+            err_msg = str(e)
+            if "429" in err_msg or "RESOURCE_EXHAUSTED" in err_msg:
+                friendly_msg = "I apologize, but the reasoning engine is currently receiving a high volume of requests. Please wait a brief moment before sending your next message."
+            else:
+                friendly_msg = "I apologize, but the connection to our services timed out. Please try again in a few moments."
+            
             return {
                 "ui_component": "DefaultText",
                 "ui_data": None,
-                "response_text": f"I apologize, but I encountered an issue interacting with the reasoning engine: {str(e)}. Please try again."
+                "response_text": friendly_msg
             }
     else:
         # High-class offline fallback envelope
