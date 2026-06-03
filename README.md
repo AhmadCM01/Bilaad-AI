@@ -164,10 +164,11 @@ $$;
    * **Name**: `bilaad-ai-backend`
    * **Runtime**: `Python 3`
    * **Branch**: `main`
-   * **Root Directory**: *(Leave empty / blank)*
-   * **Build Command**: `pip install -r backend/requirements.txt`
+   * **Root Directory**: `backend`
+   * **Build Command**: `pip install -r requirements.txt`
    * **Start Command**: `python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`
 4. Expand **Advanced** and add the following Environment Variables:
+   * `PYTHONPATH`: `..` (This is required so Python can resolve the `backend.app` module imports from the parent directory.)
    * `GEMINI_API_KEY`: Your Google Gemini API Key
    * `SUPABASE_URL`: Your Supabase Project URL
    * `SUPABASE_KEY`: Your Supabase API Key
