@@ -193,6 +193,25 @@ Invoke-WebRequest -Uri https://your-render-app.onrender.com/ingest -Method POST
 
 ---
 
+## 📱 Premium UX Polish & Error Boundaries
+
+Bilaad AI includes high-end visual alignment, responsive structures, and robust error masking, optimizing the system for executive presentations:
+
+### 1. Mobile Responsive Overhaul
+* **Full-Screen Panel Overlays**: On viewports under `768px`, the split-pane property details panel transitions to a dedicated full-screen drawer (`z-index: 100`) containing its own close controls, completely resolving "double-header" stacked layouts.
+* **Auto-Stacking Form & Spec Grids**: Mobile layouts automatically drop double-column features and consultation form inputs into structured single-column grids, preventing text truncation or layout overlap.
+* **Horizontal Suggestion Chips**: Suggestion query chips slide horizontally in a smooth scrollable list instead of wrapping vertically, saving valuable screen real estate on mobile devices.
+* **Mobile Header Resizing**: Logo sizes automatically scale down on mobile layouts to prevent navigation overlaps.
+
+### 2. Client-Facing Error boundaries
+* **Gemini Quota Masking**: If a user hits Gemini API Free Tier limits (429 Rate Limits), the backend catches the `RESOURCE_EXHAUSTED` exception and returns a polite, investor-focused notice rather than displaying a raw system traceback.
+* **Server Connection Fallback**: If the client fails to connect to the backend (e.g. during a cold-start deployment phase), the interface displays a clean retry fallback notice instead of hardcoded developer paths.
+
+### 3. Contact & Corporate Metadata Scraping
+* The web scraper parses the official Bilaad contact page (`https://www.bilaadnigeria.com/contact-us/`) during the ingestion pipeline. All customer care hotlines, social handles, and office addresses are chunked and searchable via the RAG retrieval engine.
+
+---
+
 ## 🧪 System Verification
 
 To run intent routing, agent schemas, and Pydantic response contract validation tests, execute:
