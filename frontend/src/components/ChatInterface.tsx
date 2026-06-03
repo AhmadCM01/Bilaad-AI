@@ -93,7 +93,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onPropertySelect, 
             id: uid(),
             role: 'assistant',
             content:
-              'Unable to reach the server. Please ensure the backend is running on <code>localhost:8000</code>.',
+              'I apologize, but I am currently unable to connect to the backend server. The service might be starting up. Please try again in a few moments.',
             timestamp: new Date(),
           },
         ]);
@@ -116,6 +116,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onPropertySelect, 
     <div id="chat-pane">
       {/* ── Toolbar ─────────────────────────────────── */}
       <div
+        className="hidden-mobile"
         style={{
           flexShrink: 0,
           display: 'flex',
@@ -156,7 +157,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onPropertySelect, 
             >
               Try asking
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            <div className="suggestions-list">
               {SUGGESTIONS.map((s, i) => (
                 <button
                   key={i}

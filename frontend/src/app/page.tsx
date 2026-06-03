@@ -133,28 +133,7 @@ export default function Home() {
             </svg>
           )}
 
-          {/* Mobile: Close property pane button */}
-          {activeProperty && (
-            <button
-              id="close-property-mobile"
-              onClick={() => setActiveProperty(null)}
-              style={{
-                display: 'none',
-                alignItems: 'center',
-                gap: '4px',
-                fontSize: '10px',
-                fontWeight: 700,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--gold)',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              ← Back
-            </button>
-          )}
+
         </div>
       </header>
 
@@ -286,7 +265,6 @@ export default function Home() {
       <style>{`
         @media (max-width: 767px) {
           .hidden-mobile { display: none !important; }
-          #close-property-mobile { display: flex !important; }
         }
       `}</style>
 

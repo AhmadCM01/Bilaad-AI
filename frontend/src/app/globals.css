@@ -261,6 +261,18 @@ body {
   max-width: 720px;
   margin: 0 auto;
   padding: 16px 16px 0;
+  width: 100%;
+}
+.suggestions-list {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-top: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+.suggestions-list::-webkit-scrollbar {
+  display: none;
 }
 .suggestion-chip {
   display: inline-block;
@@ -275,6 +287,7 @@ body {
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .suggestion-chip:hover {
   color: var(--gold);
@@ -350,6 +363,18 @@ body {
   overflow: hidden;
 }
 
+/* ── Footer ──────────────────────────────────────────────── */
+#app-footer {
+  flex-shrink: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg-panel);
+  z-index: 30;
+}
+
 /* ── Tabs ────────────────────────────────────────────────── */
 .tab-btn {
   flex: 1; padding: 13px 4px;
@@ -401,18 +426,42 @@ body {
   margin-top: 10px;
 }
 
+/* ── Grid Layouts ────────────────────────────────────────── */
+.property-features-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.property-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.consult-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
 /* ── Responsive Mobile ───────────────────────────────────── */
 @media (max-width: 767px) {
   #app-header        { padding: 0 14px; height: 50px; }
+  #app-header img    { height: 26px !important; }
   #message-feed      { padding: 20px 12px 12px; }
   #chat-input-area   { padding: 10px 12px 14px; }
   #suggestions-wrap  { padding: 12px 12px 0; }
+  
+  #app-footer {
+    display: none !important; /* Hide footer on mobile to avoid layout crunching */
+  }
 
   #property-pane {
     position: fixed;
     inset: 0;
     width: 100% !important;
-    z-index: 50;
+    height: 100vh !important;
+    z-index: 100; /* Cover everything including main header */
     border-left: none;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
@@ -430,8 +479,15 @@ body {
 
   .msg-bubble { max-width: 92%; font-size: 13.5px; }
   #chat-column { max-width: 100%; }
+
+  .property-features-grid-compact,
+  .property-features-grid,
+  .consult-form-grid {
+    grid-template-columns: 1fr; /* Stack columns vertically on mobile */
+  }
 }
 
 @media (max-width: 480px) {
   .suggestion-chip { font-size: 11px; padding: 7px 11px; }
 }
+

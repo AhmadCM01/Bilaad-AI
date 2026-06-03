@@ -104,7 +104,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
             </svg>
             <span style={{ fontSize: '11px', color: 'var(--fg-muted)', fontWeight: 500 }}>{location}</span>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', marginBottom: '10px' }}>
+          <div className="property-features-grid-compact">
             {features.slice(0, 4).map((f, i) => (
               <div key={i} style={{
                 fontSize: '10px', color: 'var(--fg-muted)',
@@ -249,7 +249,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
               }}>
                 Key Features
               </p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+              <div className="property-features-grid">
                 {features.map((f, i) => (
                   <div key={i} style={{
                     display: 'flex', alignItems: 'center', gap: '7px',
@@ -380,7 +380,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
                 onSubmit={(e) => { e.preventDefault(); if (name && email) setSent(true); }}
                 style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}
               >
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div className="consult-form-grid">
                   <div>
                     <label style={{
                       display: 'block',
